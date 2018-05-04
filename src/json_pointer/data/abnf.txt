@@ -1,4 +1,4 @@
-json-pointer = *1("#" reference-token) *( "/" reference-token )
+json-pointer = *1("#" (reference-token / "")) *( "/" (reference-token / "") ) / ""
 reference-token = *( unescaped / escaped ) / array-index
 unescaped = *( %x00-2E / %x30-7D / %x7F-10FFFF )
 escaped = "~" ( "0" / "1" )
