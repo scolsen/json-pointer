@@ -10,9 +10,3 @@
 
 (def ->keys (seq-> (comp keyword s/join) pred/no-integers?))
 (def ->strings (seq-> s/join pred/no-integers?))
-
-
-
-
-
-
