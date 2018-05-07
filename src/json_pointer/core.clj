@@ -8,7 +8,7 @@
   "Transform a JSON pointer string to a sequence of keys."
   [s] (as-> s s*
             (parser/parse s*)
-            (when (predicate/pointer?) 
+            (when (predicate/pointer? s*) 
               (pointer/pointer->keys s*))))
 
 (defn pointer->strings 
