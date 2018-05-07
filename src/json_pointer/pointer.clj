@@ -1,20 +1,11 @@
 (ns json-pointer.pointer 
   "Pointer functions."
   (:require [json-pointer.predicate :as pred] [json-pointer.parser :as parser]
-            [json-pointer.tree :as pt] [json-pointer.transform :as t]
-            [clojure.string :as s] [json-pointer.escape :as esc]))
+            [clojure.string :as s] [json-pointer.token :as token]
+            [json-pointer.escape :as esc]))
 
-(defn pointer->seq 
-  "Transform a parsed json pointer to a seq using a token transformer."
-  ([tree-transformer seq-transformer] 
-   (fn [pointer] (->> pointer 
-                      (parser/parse)
-                      (tree-transformer)
-                      (map seq-transformer)
-                      (flatten)))))
-
-(defn ->pointer 
-  "Transform a sequence to a json pointer using some function f."
+(defn- ->pointer 
+  "Transform a sequence to a JSON pointer using some function f."
   [f] (fn [xs]
           (->> xs
                (map f)
@@ -22,25 +13,26 @@
                (s/join)
                (str "#"))))
 
-(defn pointer-> 
-  "Transform a JSON pointer."
+(defn- pointer-> 
+  "Transform a JSON pointer into a sequence using a token transformation."
   [f] (fn [pointer] 
           (->> pointer
                parser/parse
-               tree/->token-sequence
-               (map f)
-               (flatten))))
+               (filter vector?)
+               (map f))))
 
-(defn ->keys 
-  "Transform a JSON pointer to a sequence of keys."
-  [pointer] ())
-
-(defn ->strings 
+(def pointer->strings
   "Transform a JSON pointer to a sequence of strings."
-  [pointer] ())
+  (pointer-> token/->strings))
 
-(def pointer->keys (pointer->seq pt/default t/->keys))
-(def pointer->strings (pointer->seq pt/default t/->strings))
+(def pointer->keys 
+  "Transform a JSON pointer to a sequence of keys."
+  (pointer-> token/->keys))
 
-(def keys->pointer (seq->pointer esc/->escaped-string))
-(def strings->pointer (seq->pointer esc/escape))
+(def keys->pointer
+  "Transform a sequence of keys into a JSON pointer."
+  (->pointer #(if (keyword? %) (name %) %)))
+
+(def strings->pointer
+  "Transform a sequence of strings into a JSON pointer."
+  (->pointer identity))

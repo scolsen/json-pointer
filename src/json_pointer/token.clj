@@ -2,15 +2,34 @@
   "Token transformers."
   (:require [json-pointer.escape :as esc] [clojure.string :as s]))
 
-(defn ->sequence
-  "Parse a JSON pointer token and return a sequence of values."
+(defn- handle-escape 
+  "Handle escaped tokens."
   [token]
-  (case (first token) 
-        :escaped (esc/unescape token)
-        :array-index (Integer. (s/join (rest token)))
-        :unescaped (second token)
-        :reference-token (map ->sequence (rest token))
-        token))
+  (if (= (first token) :escaped)
+    (esc/unescape token)
+    token))
+
+(defn- ->string 
+  "Given a token, flatten it to a string."
+  [token]
+  (->> token
+       rest
+       (map handle-escape) ;;this is suboptimal for array-index.
+       flatten
+       (filter (complement keyword?))
+       s/join))
+
+(defn token->
+  "Parse a JSON pointer token and return a sequence of values."
+  [f]
+  (fn [token]
+      (case (first token) 
+            :array-index (Integer. (->string token))
+            :reference-token (f (->string token))
+            token)))
+
+(def ->keys (token-> keyword))
+(def ->strings (token-> identity))
 
 (defn token? 
   "Determine if arg is a token."

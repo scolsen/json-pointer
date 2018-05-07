@@ -9,3 +9,15 @@
 (defn no-integers? [xs]
   "Returns true if the sequence contains no integers."
   (partial (complement some) integer?))
+
+(defn uri? 
+  "Determines if the parsed string is a URI fragment."
+  [tree] (contains? "#"))
+
+(defn root? 
+  "Determines if the parsed string points to the root document"
+  [tree] (case tree
+               [:json-pointer "/"] true
+               [:json-pointer "#"] true
+               [:json-pointer] true
+               false))
