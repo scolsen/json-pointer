@@ -28,9 +28,7 @@
             :reference-token (f (->string token))
             token)))
 
-(def ->keys (token-> keyword))
-(def ->strings (token-> identity))
+(def token->keys (token-> keyword))
+(def token->strings (token-> identity))
 
-(defn token? 
-  "Determine if arg is a token."
-  [token] (and (= (first token) :reference-token) vector?))
+

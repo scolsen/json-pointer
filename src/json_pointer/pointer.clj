@@ -1,7 +1,8 @@
 (ns json-pointer.pointer 
   "Pointer functions."
-  (:require [json-pointer.predicate :as pred] [json-pointer.parser :as parser]
-            [clojure.string :as s] [json-pointer.token :as token]
+  (:require [json-pointer.predicate :as pred] 
+            [clojure.string :as s] 
+            [json-pointer.token :as token]
             [json-pointer.escape :as esc]))
 
 (defn- ->pointer 
@@ -17,17 +18,16 @@
   "Transform a JSON pointer into a sequence using a token transformation."
   [f] (fn [pointer] 
           (->> pointer
-               parser/parse
                (filter vector?)
                (map f))))
 
 (def pointer->strings
   "Transform a JSON pointer to a sequence of strings."
-  (pointer-> token/->strings))
+  (pointer-> token/token->strings))
 
 (def pointer->keys 
   "Transform a JSON pointer to a sequence of keys."
-  (pointer-> token/->keys))
+  (pointer-> token/token->keys))
 
 (def keys->pointer
   "Transform a sequence of keys into a JSON pointer."
