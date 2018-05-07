@@ -1,9 +1,9 @@
-(ns json-pointer.pointer 
+(ns works.olsen.json-pointer.pointer 
   "Pointer functions."
-  (:require [json-pointer.predicate :as pred] 
-            [clojure.string :as s] 
-            [json-pointer.token :as token]
-            [json-pointer.escape :as esc]))
+  (:require [works.olsen.json-pointer.predicate :as pred] 
+            [works.olsen.json-pointer.token :as token]
+            [works.olsen.json-pointer.escape :as esc]
+            [clojure.string :as s]))
 
 (defn- ->pointer 
   "Transform a sequence to a JSON pointer using some function f."
