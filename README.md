@@ -4,7 +4,11 @@ A small Clojure library for parsing JSON pointers. It follows the [JSON pointer 
 
 ## Usage
 
+To require json-pointer as a dependency in your project, add the following to project.clj:
 
+```clojure
+[json-pointer "0.1.0"]
+```
 
 ## License
 

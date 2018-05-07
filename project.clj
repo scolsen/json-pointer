@@ -1,4 +1,4 @@
-(defproject json-pointer "0.1.0-SNAPSHOT"
+(defproject json-pointer "0.1.0"
   :description "A small library for parsing JSON pointers."
   :url "http://github.com/scolsen/json-pointer"
   :license {:name "Eclipse Public License"
