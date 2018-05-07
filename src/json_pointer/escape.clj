@@ -18,8 +18,5 @@
 
 (defn ->escaped-string 
   "Takes a value and converts it to an escaped JSON pointer string."
-  [k]
-  (cond (keyword? k) (escape (s/replace-first (str k) #":" ""))
-        (string? k) (escape k)
-        :else k))
+  [k] (escape (name k))) ;;Note that name works on keys *and* strings.
 
