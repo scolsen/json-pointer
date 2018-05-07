@@ -1,14 +1,14 @@
 # json-pointer
 
-A Clojure library designed to ... well, that part is up to you.
+A small Clojure library for parsing JSON pointers. It follows the [JSON pointer spec](https://tools.ietf.org/html/rfc6901) with slight modifications to the grammar. 
 
 ## Usage
 
-FIXME
+
 
 ## License
 
-Copyright © 2018 FIXME
+Copyright © 2018 Scott Olsen
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
