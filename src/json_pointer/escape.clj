@@ -18,5 +18,7 @@
 
 (defn ->escaped-string 
   "Takes a value and converts it to an escaped JSON pointer string."
-  [k] (escape (name k))) ;;Note that name works on keys *and* strings.
+  [k] (escape (if (not= nil (namespace k)) 
+                  (str (namespace k) "/" (name k)) 
+                  (name k)))) ;;Note that name works on keys *and* strings.
 
