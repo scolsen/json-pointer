@@ -1,8 +1,8 @@
-(ns works.olsen.json-pointer
-  (:require [works.olsen.json-pointer.pointer :as pointer] 
-            [works.olsen.json-pointer.parser :as parser]
-            [works.olsen.json-pointer.predicate :as predicate]
-            [works.olsen.json-pointer.escape :as esc]))
+(ns json-pointer.core
+  (:require [json-pointer.pointer :as pointer] 
+            [json-pointer.parser :as parser]
+            [json-pointer.predicate :as predicate]
+            [json-pointer.escape :as esc]))
 
 (defn pointer->keys 
   "Transform a JSON pointer string to a sequence of keys."

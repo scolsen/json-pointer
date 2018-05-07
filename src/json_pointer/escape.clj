@@ -1,4 +1,4 @@
-(ns works.olsen.json-pointer.escape 
+(ns json-pointer.escape 
   "Escape and unescape JSON pointer strings."
   (:require [clojure.string :as s]))
 

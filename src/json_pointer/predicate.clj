@@ -1,4 +1,4 @@
-(ns works.olsen.json-pointer.predicate
+(ns json-pointer.predicate
   "Predicates over json pointers."
   (:require [instaparse.core :as insta]))
 

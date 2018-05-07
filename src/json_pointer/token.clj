@@ -1,6 +1,6 @@
-(ns works.olsen.json-pointer.token
+(ns json-pointer.token
   "Token transformers."
-  (:require [works.olsen.json-pointer.escape :as esc] [clojure.string :as s]))
+  (:require [json-pointer.escape :as esc] [clojure.string :as s]))
 
 (defn- handle-escape 
   "Handle escaped tokens."

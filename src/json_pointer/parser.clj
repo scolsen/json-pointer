@@ -1,4 +1,4 @@
-(ns works.olsen.json-pointer.parser 
+(ns json-pointer.parser 
   "A parser for json pointers."
   (:require [instaparse.core :as i]))
 
