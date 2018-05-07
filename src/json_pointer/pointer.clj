@@ -31,8 +31,8 @@
 
 (def keys->pointer
   "Transform a sequence of keys into a JSON pointer."
-  (->pointer #(if (keyword? %) (esc/->escaped-string %) %)))
+  (->pointer #(if (keyword? %) (esc/key->escaped-string %) %)))
 
 (def strings->pointer
   "Transform a sequence of strings into a JSON pointer."
-  (->pointer #(if (keyword? %) (esc/->escaped-string %) %)))
+  (->pointer #(if (string? %) (esc/escape %) %)))

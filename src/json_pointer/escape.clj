@@ -16,7 +16,7 @@
       (s/replace #"~" "~0")
       (s/replace #"/" "~1")))
 
-(defn ->escaped-string 
+(defn key->escaped-string 
   "Takes a value and converts it to an escaped JSON pointer string."
   [k] (escape (if (not= nil (namespace k)) 
                   (str (namespace k) "/" (name k)) 
