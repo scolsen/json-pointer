@@ -18,5 +18,13 @@
             (when (predicate/pointer? s*) 
               (pointer/pointer->strings s*))))
 
+(defn resolve-pointer 
+  "Given a JSON object and a JSON pointer, return a portion of the JSON object."
+  [json pointer & {:keys [resolver] 
+                   :or {resolver :strings}}]
+  (case resolver
+        :strings (get-in json (pointer->strings pointer))
+        :keywords (get-in json (pointer->keys pointer))))
+
 (def escape "Escape a JSON pointer string. Alias to esc/escape" esc/escape)
-(def parse "Parse a JSON pointer string. Aliare to parser/parse" parser/parse)
+(def parse "Parse a JSON pointer string. Alias to parser/parse" parser/parse)
