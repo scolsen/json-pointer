@@ -10,7 +10,7 @@
   "Returns true if pointer is a valid, parseable json pointer."
   [pointer] ((complement insta/failure?) pointer))
 
-(defn uri? 
+(defn uri-pointer? 
   "Determines if the parsed string is a URI fragment."
   [tree] (contains? "#"))
 
