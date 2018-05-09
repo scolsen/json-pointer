@@ -18,6 +18,14 @@
             (when (predicate/pointer? s*) 
               (pointer/pointer->strings s*))))
 
+(defn modify-pointer 
+  "Modify a pointer string, then recast to a new pointer string."
+  [s f]
+  (-> s
+      pointer->strings
+      f
+      pointer/strings->pointer))
+
 (defn resolve-pointer 
   "Given a JSON object and a JSON pointer, return a portion of the JSON object."
   [json pointer & {:keys [resolver] 
